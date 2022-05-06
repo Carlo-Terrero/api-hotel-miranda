@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', passport.authenticate('jwt', { session: false }), usersRouter);
+app.use('/users', /* passport.authenticate('jwt', { session: false }), */ usersRouter);
 app.use('/bookings', bookingsRouter);
 app.use('/rooms', roomsRouter);
 //app.use('/auth', authRouter);

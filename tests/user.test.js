@@ -3,8 +3,6 @@ const request = require('supertest')
 //const app = require('../server/user') //rutas de user
 const app = require('../app') //rutas de user
 
-
-
 describe('probamos puntos finales de User', () => {
 
   it('recogemos 1 user', async () => {
