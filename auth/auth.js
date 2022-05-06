@@ -2,6 +2,8 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const user = {userName: 'ponko', pass: '1234'};
 
+const {secreto} = require('../env');
+
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
@@ -37,8 +39,8 @@ En este paso, verificará que los tokens no hayan sido manipulados y sean válid
 passport.use(
   new JWTstrategy(
     {
-      secretOrKey: 'TOP_SECRET',
-      jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+      secretOrKey: secreto,
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
     },
     async (token, done) => {
       try {
