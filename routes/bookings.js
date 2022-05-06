@@ -1,29 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
+//Importamos los controladores
+const bookingControllers = require('../controllers/bookingController');
+
 // Cogemos todas la bookings
-router.get('/', (req, res, next) => {
-    res.send('Obtenemos todos los booking');
-})
+router.get('/', bookingControllers.booking_get)
 
 // Cogemos una booking
-router.get('/:id', (req, res, next) =>{
-    res.send('Obtenemos el elemento del id')
-})
+router.get('/:id', bookingControllers.booking_getOne)
 
 // Añadimos un booking
-router.post('/', (req, res, next) => {
-    res.send('agregamos todos lo booking');
-})
+router.post('/', bookingControllers.booking_post)
 
 // Borramos booking
-router.delete('/:id', (req, res, next) => {
-    res.send('Borramos todos lo booking');
-})
+router.delete('/:id', bookingControllers.booking_delete)
 
 // Actualizamos booking
-router.put('/:id', (req, res, next) => {
-    res.send('actualizamos todos lo booking');
-})
+router.put('/:id', bookingControllers.booking_put)
 
 module.exports = router;
