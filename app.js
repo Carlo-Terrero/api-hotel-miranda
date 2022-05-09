@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport');
 
-var indexRouter = require('./routes/routes');
+var loginRouter = require('./routes/routes');
 var usersRouter = require('./routes/users');
 var bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
@@ -25,10 +25,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', /* passport.authenticate('jwt', { session: false }), */ usersRouter);
-app.use('/bookings', bookingsRouter);
-app.use('/rooms', roomsRouter);
+app.use('/', loginRouter);
+app.use('/users', passport.authenticate('jwt', { session: false }), usersRouter);
+app.use('/bookings', passport.authenticate('jwt', { session: false }), bookingsRouter);
+app.use('/rooms', passport.authenticate('jwt', { session: false }), roomsRouter);
 //app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler

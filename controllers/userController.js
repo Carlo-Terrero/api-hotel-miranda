@@ -2,7 +2,7 @@
 var user = require('../data/user')
 
 exports.user_get = function(req, res){
-    res.send(`Obtenemos todos los users desde controlles ${user}`);
+    res.send(`Obtenemos todos los users desde controlles ${JSON.stringify (user)}`);
 };
 
 exports.user_getOne = (req, res) => {

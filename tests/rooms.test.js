@@ -17,6 +17,7 @@ describe('Puntos finales de rooms', () => {
     it('Eliminamos un rooms', async () => {
       const res = await request(app)
         .delete('/rooms/:id')
+      expect(res.statusCode).toEqual(200)
     })
     
     it('Actualizamos un rooms', async () => {

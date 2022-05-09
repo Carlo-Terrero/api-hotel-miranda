@@ -17,6 +17,7 @@ describe('Puntos finales de bookings', () => {
     it('Eliminamos un booking', async () => {
       const res = await request(app)
         .delete('/bookings/:id')
+      expect(res.statusCode).toEqual(200)
     })
     
     it('Actualizamos un booking', async () => {

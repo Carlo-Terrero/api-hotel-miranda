@@ -14,6 +14,7 @@ router.get('/:id', bookingControllers.booking_getOne)
 router.post('/', bookingControllers.booking_post)
 
 // Borramos booking
+// este me da fallo 401 en el test pero no lo contabiliza
 router.delete('/:id', bookingControllers.booking_delete)
 
 // Actualizamos booking
