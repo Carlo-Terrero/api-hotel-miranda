@@ -6,6 +6,8 @@ const {secreto} = require('../env');
 
 const router = express.Router();
 
+const connection = require('../DBConnections/mySQL_conection');
+
 //const user = {userName: 'ponko', pass: '1234'};
 
 //porque va por post?
