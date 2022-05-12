@@ -37,9 +37,3 @@ describe('probamos puntos finales de User', () => {
   })
 
 })
-
-/* describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).toBe(true)
-  })
-}) */
