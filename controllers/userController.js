@@ -33,7 +33,31 @@ module.exports = {
     },
 
     //actualizar
-    user_put: (req, res) => {
-        return res.json({Response: `Actualizamos el user con el id ${req.params.id} desde controladores`})
+    user_put: async (req, res) => {
+        /* let datos ='';
+
+        for(const campo in req.body){
+           if(campo != 'idUsers'){
+               datos += `${campo}="${req.body[campo]}",`;
+           }
+        } */
+
+        const userResult = await dbQuery( 
+            //`UPDATE users SET ${datos} WHERE idUsers = ${parseInt(req.params.id)}`
+            `UPDATE users SET 
+                Nombre="${req.body['Nombre']}",
+                Email="${req.body['Email']}",
+                foto="${req.body['foto']}",
+                Description="${req.body['Description']}",
+                Contact="${req.body['Contact']}",
+                Password="${req.body['Password']}",
+                estado="${req.body['estado']}",
+                Start_Date="${req.body['Start_Date']}",
+                Puesto="${req.body['Puesto']}"
+                WHERE idUsers = ${parseInt(req.params.id)}`
+        )
+
+        //return res.json({Response: `Actualizamos el user con el id ${req.params.id} desde controladores ${datos}`})
+        return res.json({Resposne: `Elemento ${req.params.id} actualizado`})
     }
 }
