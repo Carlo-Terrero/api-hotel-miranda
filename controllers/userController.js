@@ -28,22 +28,17 @@ module.exports = {
         return res.json({Response: 'Nuevo usuario añadido'})
     },
 
-    user_delete: (req, res) => {
-        return res.json({Response: `Eliminamos el user con el id ${req.params.id} desde controladores`})
+    //Borramos un elemento
+    user_delete: async (req, res) => {
+        const userResult = await dbQuery(`DELETE FROM users WHERE idUsers = ${parseInt(req.params.id)}`)
+        //return res.json({Response: `Eliminamos el user con el id ${req.params.id} desde controladores`})
+        return res.json({Response: `El elemento ${req.params.id} fue borrado`})
     },
 
     //actualizar
     user_put: async (req, res) => {
-        /* let datos ='';
-
-        for(const campo in req.body){
-           if(campo != 'idUsers'){
-               datos += `${campo}="${req.body[campo]}",`;
-           }
-        } */
 
         const userResult = await dbQuery( 
-            //`UPDATE users SET ${datos} WHERE idUsers = ${parseInt(req.params.id)}`
             `UPDATE users SET 
                 Nombre="${req.body['Nombre']}",
                 Email="${req.body['Email']}",
