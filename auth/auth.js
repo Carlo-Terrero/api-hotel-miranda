@@ -9,27 +9,27 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 // manejamos el inicio de sesion --> la estrategia que hace el login que valida el usuario
 passport.use(
-    'login',
-    new localStrategy(
-      {
-        usernameField: 'userName',
-        passwordField: 'password'
-      },
-      async (userName, password, done) => {
-        try {
-            console.log(userName,  password, user)
-            if(userName === user.userName && password === user.pass){
-                return done(null, user, { message: 'Logged in Successfully' });
-            }
-                return done(null, false, { message: 'User not found or Wrong Password' });
+  'login',
+  new localStrategy(
+    {
+      usernameField: 'userName',
+      passwordField: 'password'
+    },
+    async (userName, password, done) => {
+      try {
+          console.log(userName,  password, user)
+          if(userName === user.userName && password === user.pass){
+              return done(null, user, { message: 'Logged in Successfully' });
+          }
+              return done(null, false, { message: 'User not found or Wrong Password' });
 
-        } catch (error) {
-          console.error(error)
-          return done(error);
-        }
-
+      } catch (error) {
+        console.error(error)
+        return done(error);
       }
-    )
+
+    }
+  )
 );
 
 // Inicio de sesión de los usuarios (tambien registro).

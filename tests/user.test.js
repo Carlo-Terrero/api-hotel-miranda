@@ -35,5 +35,4 @@ describe('probamos puntos finales de User', () => {
       .delete('/users/:id')
     expect(res.statusCode).toEqual(200)
   })
-
 })

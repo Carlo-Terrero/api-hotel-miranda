@@ -1,4 +1,6 @@
 const {faker} = require('@faker-js/faker');
+const res = require('express/lib/response');
+const { use } = require('passport/lib');
 
 const ConectionDB = require('../DBConnections/mySQL_conection')
 
@@ -149,12 +151,53 @@ function inserBooking(){
     }
     
 }
-inserBooking();
+
+//inserBooking();
+
+/* const a = ConectionDB.query(`select Nombre, Email, contact from users where idUsers = 1`,
+        function(error, results, fields){
+            if(error) throw error;
+            console.log('SUCCESS datos introducidos')
+        }
+
+    ) */
+
+/* console.log(a) */
+
+function dbQuery(query) {
+    return new Promise((resolve, reject) => {
+        ConectionDB.query(query,
+            (error, result, fields) => {
+                if(error) reject(error);
+                resolve(result);
+            }
+        );
+    });
+}
+
+const p = async (req, res, next) => {
+    const userResult = await dbQuery('SELECT * FROM users');
+    console.log(userResult);
+}
 
 
-//console.log(añadirIdRoom());
+//Porque si hago un return del dato que ya me imprime bien me da Promise { <pending> }
+const pp = async (req, res, next) => {
+    const userResult = await dbQuery('SELECT * FROM users WHERE idUsers = 1');
+    //console.log(userResult);
+    return userResult;
+}
 
-//faker.date.past() => Genera fecha del pasado en años
-//faker.date.recent() => Genera fecha del pasaso reciente(dias)
-//faker.date.future() => Genera fecha en el futuro
-//faker.date.between() => Genera una fecha aleatoria entre los límites dados('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
+
+let aa;
+const ppp = async (req, res, next) => {
+    const userResult = await dbQuery('SELECT * FROM users WHERE idUsers = 1');
+    aa = userResult;
+    console.log(userResult);
+}
+ppp()
+
+console.log(aa);
+
+//const d = pp();
+//console.log(d)
