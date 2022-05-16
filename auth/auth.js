@@ -1,8 +1,8 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
-const user = {userName: 'ponko', pass: '1234'};
 
-const {secreto} = require('../env');
+const user = {userName: 'ponko', pass: '1234'};
+require('dotenv').config();
 
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
@@ -17,7 +17,7 @@ passport.use(
     },
     async (userName, password, done) => {
       try {
-          console.log(userName,  password, user)
+          //console.log(userName,  password, user)
           if(userName === user.userName && password === user.pass){
               return done(null, user, { message: 'Logged in Successfully' });
           }
@@ -39,7 +39,7 @@ En este paso, verificará que los tokens no hayan sido manipulados y sean válid
 passport.use(
   new JWTstrategy(
     {
-      secretOrKey: secreto,
+      secretOrKey: process.env.SECRET_WORD,
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
     },
     async (token, done) => {
