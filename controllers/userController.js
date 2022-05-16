@@ -2,6 +2,7 @@
 //var user = require('../data/user')
 
 const dbQuery = require('../DBConnections/queryFunction');
+const bcrypt = require("bcryptjs");
 
 module.exports = {
     user_get: async (req, res, next) =>{
@@ -18,6 +19,7 @@ module.exports = {
     //Agregamos users
     user_post: async (req, res) => {
         let {Nombre, Email, foto, Description, Contact, Password, estado, Start_Date, Puesto} = req.body;
+        Password = await bcrypt.hash(Password, 7);
 
         const userResult = await dbQuery(
             `INSERT INTO users (Nombre, Email, foto, Description, Contact, Password, estado, Start_Date, Puesto)
