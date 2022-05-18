@@ -2,7 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-const {secreto} = require('../env');
+require('dotenv').config();
+//const {secreto} = require('../env');
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.post(
               if (error) return next(error);
               
               const body = { _id: user._id, email: user.email };
-              const token = jwt.sign({ user: body }, secreto);
+              const token = jwt.sign({ user: body }, process.env.SECRET_WORD);
               return res.json({ token });
             }
           );
