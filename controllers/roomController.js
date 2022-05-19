@@ -32,17 +32,17 @@ module.exports = {
         })
     },
     
-    room_delete: (req, res, next) => {
+    room_delete: function(req, res, next){
         const idRoom = req.params.id;
 
         Room.findByIdAndDelete(idRoom, (error) => {
-            if(error) return next(erro);
+            if(error) return next(error);
             return res.status(200).json({success: `Habitacion ${idRoom} eliminada`})
         })
         //res.send(`Eliminamos la room con el id ${req.params.id} desde controladores`)
     },
     
-    room_put: (req, res, next) => {
+    room_put: function(req, res, next){
         const idroom = req.params.id;
         const NewData = req.body;
 

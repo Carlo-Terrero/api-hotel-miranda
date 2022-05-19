@@ -11,7 +11,8 @@ const users = new mongoose.Schema({
     password: String,
     estate: Boolean,
     start_date: Date,
-    puesto: String
+    puesto: String,
+    estado: Boolean
 }, {
     versionKey: false
 });

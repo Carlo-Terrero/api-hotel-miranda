@@ -10,7 +10,7 @@ var userController = require('../controllers/userController')
 router.get('/', userController.user_get);
 
 // Cogemos un user
-router.get('/:id', userController.user_getOne);
+//router.get('/:id', userController.user_getOne);
 
 
 // Añadimos un user
