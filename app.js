@@ -11,6 +11,9 @@ var bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
 //const authRouter = require('./auth/auth');
 
+//Hacemos la conexion a la BBDD
+require('./connection/connectionDB');
+
 require('./auth/auth');
 
 var app = express();

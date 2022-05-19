@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const roomSchema = new mongoose.Schema({
+const rooms = new mongoose.Schema({
     foto: String,
     bed_type: String,
     number: Number,
@@ -12,7 +12,8 @@ const roomSchema = new mongoose.Schema({
     discount: Number,
     cancellation: String,
     facilities: String
-
+},{
+    versionKey: false
 })
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = mongoose.model('Room', rooms);

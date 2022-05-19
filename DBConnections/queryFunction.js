@@ -1,4 +1,4 @@
-const ConectionDB = require('./mySQL_conection');
+/* const ConectionDB = require('./mySQL_conection');
 
 function dbQuery(query) {
     return new Promise((resolve, reject) => {
@@ -11,4 +11,4 @@ function dbQuery(query) {
     })
 }
 
-module.exports = dbQuery;
+module.exports = dbQuery; */

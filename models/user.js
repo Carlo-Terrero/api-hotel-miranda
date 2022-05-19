@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const users = new mongoose.Schema({
     name: String,
     email: String,
     foto: String,
@@ -12,6 +12,8 @@ const userSchema = new mongoose.Schema({
     estate: Boolean,
     start_date: Date,
     puesto: String
+}, {
+    versionKey: false
 });
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', users)

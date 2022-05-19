@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+/* const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -11,4 +11,4 @@ connection.connect((error) => {
     !!error ? console.log(error) : console.log('Dantabase connected successfully');
 });
 
-module.exports = connection;
+module.exports = connection; */
