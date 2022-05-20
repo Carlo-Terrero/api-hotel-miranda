@@ -7,16 +7,23 @@ module.exports = {
        
         try{
             const result = await User.find();
-            res.status(200).json({result})
+            return res.status(200).json({result})
         }catch(error){
             next(error)
         }
     //res.send(`Obtenemos todos los users desde controlles ${JSON.stringify (user)}`);
     },
     
-   /*  user_getOne: (req, res, next) => {
-        res.send(`Obtenemos el user con el id ${req.params.id} desde controladores`)
-    }, */
+    user_getOne: async (req, res, next) => {
+        const idUser = req.params.id;
+        try{
+            const result = await User.findById(idUser);
+            return res.status(200).json({result})
+        }catch(error){
+            next(error)
+        }
+        //res.send(`Obtenemos el user con el id ${req.params.id} desde controladores`)
+    },
     
     user_post: async (req, res, next) => {
         const upData = req.body;
@@ -24,7 +31,7 @@ module.exports = {
 
         try{
             const result = await newUser.save()
-            res.status(200).json({result})
+            return res.status(200).json({result})
         }catch(error){
             next(error)
         }
@@ -34,7 +41,7 @@ module.exports = {
         const idUser = req.params.id;
         try{
             const result = await User.findByIdAndDelete(idUser);
-            res.status(200).json({success: `Usuario ${idUser} borrado`})
+            return res.status(200).json({success: `Usuario ${idUser} borrado`})
         }catch(error){
             next(error)
         }
@@ -48,7 +55,7 @@ module.exports = {
         const upData = req.body;
         try{
             const result = await User.findByIdAndUpdate(idUser, upData, {returnOriginal: false})
-            res.status(200).json({result})
+            return res.status(200).json({result})
         }catch(error){
             next(error)
         }

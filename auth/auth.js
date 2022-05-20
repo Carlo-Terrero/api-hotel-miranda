@@ -1,6 +1,8 @@
+const res = require('express/lib/response');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
-const user = {userName: 'ponko', pass: '1234'};
+//const user = {userName: 'ponko', pass: '1234'};
+const User = require('../models/user');
 
 require('dotenv').config()
 //const {secreto} = require('../env');
@@ -19,14 +21,34 @@ passport.use(
       async (userName, password, done) => {
         try {
           //aqui la consulta
-            console.log(userName,  password, user)
-            if(userName === user.userName && password === user.pass){
+            console.log('Datos introducidos ===> ', userName, ' ==> ', password)//El dato si llega
+            const selectUser = await  User.find({ name: `${userName}`, password: `${password}`});
+            //console.log(selectUser)
+
+            if(selectUser.length > 0){
+              console.log('success: ',selectUser)
+              return done(null, selectUser, { message: 'Logged in Successfully' });
+            }else{
+              console.log('error: ', selectUser)
+              return done(null, false, { message: 'User not found or Wrong Password' });
+            }
+
+            /* if(!selectUser) return res.status(404).json({error: 'datos no coincidentes'})
+            return res.status(200).json({success: 'encontrado'}) */
+
+
+            /* await User.users.find({ name: `${userName}`, password: `${password}`}, (error, userLoging) => {
+              if(error) return json(null, false, { message: 'User not found or Wrong Password' }); 
+              return json(null, userLoging, { message: 'Logged in Successfully' });
+            }) */
+            //console.log(userName,  password, user)
+            /* if(userName === user.userName && password === user.pass){
                 return done(null, user, { message: 'Logged in Successfully' });
             }
-                return done(null, false, { message: 'User not found or Wrong Password' });
+                return done(null, false, { message: 'User not found or Wrong Password' }); */
 
         } catch (error) {
-          console.error(error)
+          //console.error(error)
           return done(error);
         }
 
