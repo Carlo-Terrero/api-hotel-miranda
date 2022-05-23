@@ -9,7 +9,6 @@ var loginRouter = require('./routes/routes');
 var usersRouter = require('./routes/users');
 var bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
-//const authRouter = require('./auth/auth');
 
 //Hacemos la conexion a la BBDD
 require('./connection/connectionDB');
@@ -41,13 +40,8 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  console.error(err)
-  // render the error page
   res.status(err.status || 500);
-  res.json({error: true})
+  res.json({error: err.message})
 
 });
 

@@ -3,16 +3,16 @@
 const mongoose = require('mongoose');
 
 const users = new mongoose.Schema({
-    name: String,
-    email: String,
-    foto: String,
-    description: String,
-    contact: Number,
-    password: String,
-    estate: Boolean,
-    start_date: Date,
-    puesto: String,
-    estado: Boolean
+    name: {type: String, required: true},
+    email: {type: String, required: true},
+    foto: {type: String, required: true},
+    description: {type: String, required: true},
+    contact: {type: Number, required: true},
+    password: {type: String, required: true},
+    estate: {type: Boolean, required: true},
+    start_date: {type: Date, required: true},
+    puesto: {type: String, required: true},
+    estado: {type: Boolean, required: true}
 }, {
     versionKey: false
 });

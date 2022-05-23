@@ -1,7 +1,7 @@
 const {faker} = require('@faker-js/faker');
 //const res = require('express/lib/response');
 //onst { use } = require('passport/lib');
-const Pruebas = require('../models/pruebas');
+const Contact = require('../models/contact');
 const User = require('../models/user');
 const Room = require('../models/rooms');
 const Booking = require('../models/booking');
@@ -60,21 +60,28 @@ const añadirDescuento = () => {
 const randamStatus = () => {
     return Math.floor(Math.random() *  (4))
 }
-
+/* name: {type: String, required: true},
+mail: {type: String, required: true},
+fhone: {type: Number, required: true},
+asunto: {type: String, required: true},
+mensaje */
 
 async function  addPruebas(){
 
-    for(let i = 0; i < 3; i++){
+    for(let i = 0; i < 6; i++){
         //try {
             let persona = {
                 name: faker.name.firstName(),
-                edad: añadirDescuento()
+                mail: faker.internet.email(),
+                fhone: faker.phone.phoneNumber('6########'),
+                asunto:  faker.word.noun(),
+                mensaje: faker.lorem.paragraph(1),
             }
 
-            const newPersona = new Pruebas(persona);
-            const result = await newPersona.save()
+            const newContact = new Contact(persona);
+            const result = await newContact.save()
 
-            console.log('Persona añadida', result)
+            console.log('Contact añadido', result)
 
        // } catch (err){
             //console.log(err)
