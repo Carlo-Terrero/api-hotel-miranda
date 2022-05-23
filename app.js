@@ -9,6 +9,7 @@ var loginRouter = require('./routes/routes');
 var usersRouter = require('./routes/users');
 var bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
+const contactRouter = require('./routes/contact');
 
 //Hacemos la conexion a la BBDD
 require('./connection/connectionDB');
@@ -31,6 +32,7 @@ app.use('/', loginRouter);
 app.use('/users', passport.authenticate('jwt', { session: false }), usersRouter);
 app.use('/bookings', passport.authenticate('jwt', { session: false }), bookingsRouter);
 app.use('/rooms', passport.authenticate('jwt', { session: false }), roomsRouter);
+app.use('/contact',passport.authenticate('jwt', { session: false }), contactRouter);
 //app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
