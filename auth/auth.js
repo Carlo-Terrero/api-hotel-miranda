@@ -1,9 +1,10 @@
-const res = require('express/lib/response');
+//const res = require('express/lib/response');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user');
 
+const bcrypt = require("bcryptjs");
 require('dotenv').config()
 
 const JWTstrategy = require('passport-jwt').Strategy;
@@ -19,15 +20,16 @@ passport.use(
       },
       async (userName, password, done) => {
         try {
-          //aqui la consulta
-            console.log('Datos introducidos ===> ', userName, ' ==> ', password)//El dato si llega
-            const selectUser = await  User.find({ name: `${userName}`, password: `${password}`});
+            //aqui la consulta para seleccionar los datos del usuario introducido
+            const selectUser = await  User.find({ name: userName});
+            console.log('obj user ----> ',selectUser)
+            //comparamos la contraseña introducida, con la contraseña hasheada de los datos del usuario. Esto devuelve true/false
+            const match = await bcrypt.compare(password, selectUser[0].password);
 
-            if(selectUser.length > 0){
-              console.log('success: ',selectUser)
+            if(match){         
+              console.log('obj user ----> ',selectUser)     
               return done(null, selectUser, { message: 'Logged in Successfully' });
             }else{
-              console.log('error: ', selectUser)
               return done(null, false, { message: 'User not found or Wrong Password' });
             }
 

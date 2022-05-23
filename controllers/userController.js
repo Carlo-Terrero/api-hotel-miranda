@@ -1,6 +1,7 @@
 // var Author = require('../models/author'); Este seria el modelo de la tabla de la bbdd
 //var user = require('../data/user')
 const User = require('../models/user')
+const bcrypt = require("bcryptjs");
 
 module.exports = {
    user_get: async (req, res, next) => {
@@ -27,6 +28,12 @@ module.exports = {
     
     user_post: async (req, res, next) => {
         const upData = req.body;
+        const {password} = req.body;
+
+        const hasPassword = await bcrypt.hash(password, 7)
+        console.log(hasPassword)
+
+        upData.password = hasPassword;
         const newUser = new User(upData)
 
         try{
@@ -61,3 +68,21 @@ module.exports = {
         }
     }
 }
+
+
+/* 
+Brulio 1
+root
+$2a$07$vO.6Ekn/XvGFUC6cyi.eWux5Y63t5O.beoVqsimVaaDZdvoRRQD7q
+
+Brulio fogon
+roto
+$2a$07$xkeKCeJ7hILpmRxzSdy7yuRuyDH52TqquNL48YAxS1neysSpECwNS
+
+mago
+roto
+
+tamara
+arreglado
+
+*/

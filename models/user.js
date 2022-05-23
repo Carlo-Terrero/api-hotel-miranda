@@ -12,7 +12,6 @@ const users = new mongoose.Schema({
     estate: {type: Boolean, required: true},
     start_date: {type: Date, required: true},
     puesto: {type: String, required: true},
-    estado: {type: Boolean, required: true}
 }, {
     versionKey: false
 });
