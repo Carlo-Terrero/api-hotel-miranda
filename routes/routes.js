@@ -7,11 +7,7 @@ require('dotenv').config();
 
 const router = express.Router();
 
-//const user = {userName: 'ponko', pass: '1234'};
-
-//porque va por post?
 //manejo de una solicitud POST para login
-
 router.post(
   '/login',
   async (req, res, next) => {
@@ -32,8 +28,9 @@ router.post(
             async (error) => {
               if (error) return next(error);
               
-              const body = { _id: user._id, email: user.email };
-              const token = jwt.sign({ user: body }, process.env.SECRET_WORD);
+              //En esta parate es que inyectamos al toque los datos que queremos enviar al fron de forma encritada.
+              //const body = { _id: user._id, email: user.email };
+              const token = jwt.sign({ user }, process.env.SECRET_WORD);
               return res.json({ token });
             }
           );

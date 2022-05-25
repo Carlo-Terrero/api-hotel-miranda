@@ -68,7 +68,7 @@ mensaje */
 
 async function  addPruebas(){
 
-    for(let i = 0; i < 6; i++){
+    for(let i = 0; i < 12; i++){
         //try {
             let persona = {
                 name: faker.name.firstName(),
@@ -76,6 +76,7 @@ async function  addPruebas(){
                 fhone: faker.phone.phoneNumber('6########'),
                 asunto:  faker.word.noun(),
                 mensaje: faker.lorem.paragraph(1),
+                estado:  faker.datatype.boolean()
             }
 
             const newContact = new Contact(persona);
@@ -88,7 +89,6 @@ async function  addPruebas(){
        // }
     }
 }
-
 //addPruebas();
 
 // Este fue una prueba
@@ -143,7 +143,7 @@ async function insetUser(){
 async function insertarNumRooms(){
 
     let date =[];
-    for(let i = 0 ; i < 3 ; i++ ){
+    for(let i = 3 ; i < 30 ; i++ ){
         try{
             const room = {
                 foto: 'http://www.mdvacationclub.com/wp-content/uploads/2018/12/Placeholder.png',
@@ -171,7 +171,7 @@ async function insertarNumRooms(){
 async function inserBooking(){
 
     let datos=[]
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 45; i++){
         try{
             const booking = {
                 name:  faker.name.firstName() + ' ' + faker.name.findName(),
@@ -198,7 +198,6 @@ async function inserBooking(){
     }
     console.log(datos)
 }
-
 //inserBooking();
 
 /* const a = ConectionDB.query(`select Nombre, Email, contact from users where idUsers = 1`,

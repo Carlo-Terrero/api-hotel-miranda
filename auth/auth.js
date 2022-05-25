@@ -22,13 +22,25 @@ passport.use(
         try {
             //aqui la consulta para seleccionar los datos del usuario introducido
             const selectUser = await  User.find({ name: userName});
-            console.log('obj user ----> ',selectUser)
             //comparamos la contraseña introducida, con la contraseña hasheada de los datos del usuario. Esto devuelve true/false
             const match = await bcrypt.compare(password, selectUser[0].password);
+            
+            //Aqui enviamos un usuario refactorizado para introducirlo al token una vez refactorizado
+            const userNoPss = {
+              id: selectUser[0]._id,
+              name: selectUser[0].name,
+              email: selectUser[0].email,
+              foto: selectUser[0].foto,
+              description: selectUser[0].description,
+              contact: selectUser[0].contact,
+              estate: selectUser[0].estate,
+              start_date: selectUser[0].start_date,
+              puesto: selectUser[0].puesto,
+              elResto: 'ok'
+            }
 
-            if(match){         
-              console.log('obj user ----> ',selectUser)     
-              return done(null, selectUser, { message: 'Logged in Successfully' });
+            if(match){            
+              return done(null, userNoPss, { message: 'Logged in Successfully' });
             }else{
               return done(null, false, { message: 'User not found or Wrong Password' });
             }
