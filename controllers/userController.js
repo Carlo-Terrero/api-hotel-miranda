@@ -30,11 +30,10 @@ module.exports = {
         const upData = req.body;
         const {password} = req.body;
 
-        const hasPassword = await bcrypt.hash(password, 7)
-        console.log(hasPassword)
+        const hasPassword = await bcrypt.hash(password, 7);
 
         upData.password = hasPassword;
-        const newUser = new User(upData)
+        const newUser = new User(upData);
 
         try{
             const result = await newUser.save()

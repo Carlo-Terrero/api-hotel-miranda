@@ -11,7 +11,9 @@ const rooms = new mongoose.Schema({
     price: {type: Number, required: true},
     discount: {type: Number, required: true},
     cancellation: {type: String, required: true},
-    facilities: {type: String, required: true}
+    facilities: {type: String, required: true},
+    status: {type: Boolean, required: true},
+    room_floor: {type: Number, required: true}
 },{
     versionKey: false
 })

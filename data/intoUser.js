@@ -143,7 +143,7 @@ async function insetUser(){
 async function insertarNumRooms(){
 
     let date =[];
-    for(let i = 3 ; i < 30 ; i++ ){
+    for(let i = 0 ; i < 35 ; i++ ){
         try{
             const room = {
                 foto: 'http://www.mdvacationclub.com/wp-content/uploads/2018/12/Placeholder.png',
@@ -154,7 +154,9 @@ async function insertarNumRooms(){
                 price: faker.commerce.price(100, 200),
                 discount: añadirDescuento(),
                 cancellation: faker.lorem.paragraph(1),
+                status: faker.datatype.boolean(),
                 facilities: comodidades(),
+                room_floor: i+1
             }
 
             const newRoom = new Room(room);

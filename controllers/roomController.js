@@ -37,7 +37,7 @@ module.exports = {
 
         Room.findByIdAndDelete(idRoom, (error) => {
             if(error) return next(error);
-            return res.status(200).json({success: `Habitacion ${idRoom} eliminada`})
+            return res.status(200).json({success: `Habitacion ${idRoom} eliminada`, id: `${idRoom}`})
         })
         //res.send(`Eliminamos la room con el id ${req.params.id} desde controladores`)
     },

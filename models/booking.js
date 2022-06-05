@@ -13,7 +13,7 @@ const booking = new mongoose.Schema({
     amenities: {type: String, required: true },
     fotos: {type: String, required: true },
     room_type: {type: String, required: true },
-    status: {type: String, required: true },
+    status: {type: Number, required: true },
     description_room: {type: String, required: true }
     //{type: 'string', required: true, index: true}
 },{
