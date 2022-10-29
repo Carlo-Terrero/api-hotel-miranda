@@ -1,23 +1,27 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+'use strict'
+
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const passport = require('passport');
 
-var loginRouter = require('./routes/routes');
-var usersRouter = require('./routes/users');
-var bookingsRouter = require('./routes/bookings');
+const loginRouter = require('./routes/routes');
+const usersRouter = require('./routes/users');
+const bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
 const contactRouter = require('./routes/contact');
+const messageRouter = require('./routes/message');
+
 
 //Hacemos la conexion a la BBDD
 require('./connection/connectionDB');
 
 require('./auth/auth');
 
-var app = express();
-const router = express.Router();
+const app = express();
+//const router = express.Router();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -63,11 +67,15 @@ app.use((req, res, next) => {
 }) */
 
 app.use('/', loginRouter);
-app.use('/users', /* passport.authenticate('jwt', { session: false }), */ usersRouter);
+app.use('/users', passport.authenticate('jwt', { session: false }), usersRouter);
 app.use('/bookings', passport.authenticate('jwt', { session: false }), bookingsRouter);
 app.use('/rooms', passport.authenticate('jwt', { session: false }), roomsRouter);
-app.use('/contact',/* passport.authenticate('jwt', { session: false }), */ contactRouter);
+app.use('/contact', passport.authenticate('jwt', { session: false }), contactRouter);
+app.use('/messages', passport.authenticate('jwt', { session: false }), messageRouter);
 //app.use('/auth', authRouter);
+
+//rutas para que la web pueda hacer reserva, la idea es que esto se reemplace por un token temporal
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

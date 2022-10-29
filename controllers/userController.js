@@ -1,5 +1,5 @@
-// var Author = require('../models/author'); Este seria el modelo de la tabla de la bbdd
-//var user = require('../data/user')
+'use strict'
+
 const User = require('../models/user')
 const bcrypt = require("bcryptjs");
 

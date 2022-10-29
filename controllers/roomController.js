@@ -1,5 +1,5 @@
-// var Author = require('../models/author'); Este seria el modelo de la tabla de la bbdd
-//var user = require('../data/user')//Los datos con lo que vamos a interactuar aqui
+'use strict'
+
 const Room = require('../models/rooms');
 
 module.exports = {
@@ -13,11 +13,11 @@ module.exports = {
     },
     
     room_getOne: function(req, res, next){
-        const idroom = req.params.id;
+        const idRoom = req.params.id;
 
-        Room.findById({_id: idroom}, (error, room) => {
+        Room.findById({_id: idRoom}, (error, room) => {
             if(error) return next(error);
-            return res.status(200).json({room})
+            return res.status(200).json({room});
         })
         
     },
@@ -43,10 +43,10 @@ module.exports = {
     },
     
     room_put: function(req, res, next){
-        const idroom = req.params.id;
+        const idRoom = req.params.id;
         const NewData = req.body;
 
-        Room.findByIdAndUpdate(idroom, NewData,  {returnOriginal: false}, (error, room) => {
+        Room.findByIdAndUpdate(idRoom, NewData,  {returnOriginal: false}, (error, room) => {
             if(error) return next(error);
             return res.status(200).json({room})
         })

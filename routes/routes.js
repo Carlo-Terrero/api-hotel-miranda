@@ -28,7 +28,7 @@ router.post(
             async (error) => {
               if (error) return next(error);
               
-              //En esta parate es que inyectamos al toque los datos que queremos enviar al fron de forma encritada.
+              //En esta parte es que inyectamos al toque los datos que queremos enviar al fron de forma encriptada.
               //const body = { _id: user._id, email: user.email };
               const token = jwt.sign({ user }, process.env.SECRET_WORD);
               return res.json({ token });

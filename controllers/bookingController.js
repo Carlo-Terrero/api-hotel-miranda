@@ -1,5 +1,5 @@
-// var Author = require('../models/author'); Este seria el modelo de la tabla de la bbdd
-//var user = require('../data/user') // Los datos con lo que vamos a interactuar aqui
+'use strict'
+
 const Booking = require('../models/booking');
 
 module.exports = {
