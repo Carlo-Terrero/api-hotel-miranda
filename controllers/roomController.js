@@ -1,22 +1,55 @@
-// var Author = require('../models/author'); Este seria el modelo de la tabla de la bbdd
-var user = require('../data/user')//Los datos con lo que vamos a interactuar aqui
+'use strict'
 
-exports.room_get = function(req, res){
-    res.send(`Obtenemos todos los rooms desde controlles ${user}`);
-};
+const Room = require('../models/rooms');
 
-exports.room_getOne = (req, res) => {
-    res.send(`Obtenemos la room con el id ${req.params.id} desde controladores`)
-}
+module.exports = {
+    room_get: function(req, res, next){
 
-exports.room_post= function(req, res){
-    res.send('Agregamos una room nuevo desde controladores');
-};
+        Room.find((error, rooms) =>{
+            if(error) return next(error);
+            return res.status(200).json({rooms})
+        })
+        
+    },
+    
+    room_getOne: function(req, res, next){
+        const idRoom = req.params.id;
 
-exports.room_delete = (req, res) => {
-    res.send(`Eliminamos la room con el id ${req.params.id} desde controladores`)
-}
+        Room.findById({_id: idRoom}, (error, room) => {
+            if(error) return next(error);
+            return res.status(200).json({room});
+        })
+        
+    },
+    
+    room_post: function(req, res, next){
+        const newData = req.body;
+        const newRoom = new Room(newData);
 
-exports.room_put = (req, res) => {
-    res.send(`Actualizamos la room con el id ${req.params.id} desde controladores`)
+        newRoom.save((error, room) => {
+            if(error) return next(error);
+            return res.status(200).json({room});
+        })
+    },
+    
+    room_delete: function(req, res, next){
+        const idRoom = req.params.id;
+
+        Room.findByIdAndDelete(idRoom, (error) => {
+            if(error) return next(error);
+            return res.status(200).json({success: `Habitacion ${idRoom} eliminada`, id: `${idRoom}`})
+        })
+        //res.send(`Eliminamos la room con el id ${req.params.id} desde controladores`)
+    },
+    
+    room_put: function(req, res, next){
+        const idRoom = req.params.id;
+        const NewData = req.body;
+
+        Room.findByIdAndUpdate(idRoom, NewData,  {returnOriginal: false}, (error, room) => {
+            if(error) return next(error);
+            return res.status(200).json({room})
+        })
+        //res.send(`Actualizamos la room con el id ${req.params.id} desde controladores`)
+    }
 }
