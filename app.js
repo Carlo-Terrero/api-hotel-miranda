@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-//Con este bloque y con (authorization) en la linea 41 arreglamos los problemas de CORDS de la authentication
+//Con este bloque y con (authorization) en la linea 41 arreglamos los problemas de CORDS de la authentication--
 app.use((req, res, next) => {
   if(req.method === 'OPTIONS'){
     return res.end();
