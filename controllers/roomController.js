@@ -2,7 +2,7 @@
 
 const Room = require('../models/rooms');
 
-//probamos prueba deploid 10
+//probamos prueba deploid 11
 module.exports = {
     room_get: function(req, res, next){
 
