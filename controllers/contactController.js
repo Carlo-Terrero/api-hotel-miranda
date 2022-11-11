@@ -1,5 +1,6 @@
 'use strict'
 
+//prueba 1
 const Contact = require('../models/contact');
 
 module.exports = {
