@@ -13,6 +13,7 @@ const bookingsRouter = require('./routes/bookings');
 const roomsRouter = require('./routes/rooms');
 const contactRouter = require('./routes/contact');
 const messageRouter = require('./routes/message');
+const publicRouter = require('./routes/public');
 
 
 //Hacemos la conexion a la BBDD
@@ -72,6 +73,7 @@ app.use('/bookings', passport.authenticate('jwt', { session: false }), bookingsR
 app.use('/rooms', passport.authenticate('jwt', { session: false }), roomsRouter);
 app.use('/contact', passport.authenticate('jwt', { session: false }), contactRouter);
 app.use('/messages', passport.authenticate('jwt', { session: false }), messageRouter);
+app.use('/public', publicRouter);
 //app.use('/auth', authRouter);
 
 //rutas para que la web pueda hacer reserva, la idea es que esto se reemplace por un token temporal
