@@ -9,7 +9,7 @@ const users = new mongoose.Schema({
     description: {type: String, required: true},
     contact: {type: Number, required: true},
     password: {type: String, required: true},
-    estate: {type: Boolean, required: true},
+    state: {type: Boolean, required: true},
     start_date: {type: Date, required: true},
     puesto: {type: String, required: true},
     schedule: {type: String, require: true}

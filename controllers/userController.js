@@ -4,7 +4,7 @@ const User = require('../models/user')
 const bcrypt = require("bcryptjs");
 
 module.exports = {
-   user_get: async (req, res, next) => {
+    user_get: async (req, res, next) => {
        
         try{
             const result = await User.find();

@@ -33,7 +33,7 @@ passport.use(
               foto: selectUser[0].foto,
               description: selectUser[0].description,
               contact: selectUser[0].contact,
-              estate: selectUser[0].estate,
+              state: selectUser[0].state,
               start_date: selectUser[0].start_date,
               puesto: selectUser[0].puesto,
               elResto: 'ok'
