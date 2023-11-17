@@ -7,10 +7,8 @@ module.exports = {
     room_get: function(req, res, next){
         Room.find((error, rooms) =>{
             if(error) return next(error);
-
             return res.status(200).json({rooms});
         });
-        
     },
     
     room_getOne: function(req, res, next){

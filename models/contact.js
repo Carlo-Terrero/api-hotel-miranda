@@ -8,7 +8,7 @@ const contact = new mongoose.Schema({
     fhone: {type: Number, required: true},
     asunto: {type: String, required: true},
     mensaje: {type: String, required: true},
-    estado: {type: Boolean, required: true}
+    state: {type: Boolean, required: true}
 },{
     versionKey: false
 });
